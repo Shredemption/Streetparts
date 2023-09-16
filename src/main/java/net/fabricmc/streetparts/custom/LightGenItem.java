@@ -46,12 +46,12 @@ public class LightGenItem extends Item {
 
 
             //Place Block
-            world.setBlockState(pos, state);
+            if (world.getBlockState(context.getBlockPos().add(0,1,0)).getBlock() == Blocks.AIR) {
+                world.setBlockState(pos, state);
+                context.getPlayer().playSound(SoundEvents.BLOCK_STONE_PLACE, 1.0f, 1.0f);
+            }
 
             //posX:0,posY:1,posZ:0,rotation:"CLOCKWISE_180",showboundingbox:1b,sizeX:0,sizeY:0,sizeZ:0}
-        } else {
-            //Play sound
-            context.getPlayer().playSound(SoundEvents.BLOCK_STONE_PLACE, 1.0f, 1.0f);
         }
 
         return super.useOnBlock(context);
